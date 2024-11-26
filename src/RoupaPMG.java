@@ -19,36 +19,38 @@ public class RoupaPMG extends Peca {
         System.out.print("Tamanho vendido (P/M/G): ");
         String tamanho = scanner.nextLine().toUpperCase();
 
+        System.out.print("Quantidade vendida: ");
+        int quantidadeVendida = scanner.nextInt();
+
         switch (tamanho) {
             case "P":
-                if (quantidadeP > 0) {
-                    quantidadeP--;
-                    System.out.println("Venda concluída! Restam " + quantidadeP + " unidades do tamanho P de " + getDescricao() + ".");
+                if (quantidadeVendida > quantidadeP) {
+                    System.out.println("Estoque insuficiente para o tamanho P.");
                 } else {
-                    System.out.println("Estoque insuficiente para tamanho P.");
+                    quantidadeP -= quantidadeVendida;
+                    System.out.println("Venda concluída! Restam " + quantidadeP + " unidades do tamanho P de " + getDescricao() + ".");
                 }
                 break;
             case "M":
-                if (quantidadeM > 0) {
-                    quantidadeM--;
-                    System.out.println("Venda concluída! Restam " + quantidadeM + " unidades do tamanho M de " + getDescricao() + ".");
+                if (quantidadeVendida > quantidadeM) {
+                    System.out.println("Estoque insuficiente para o tamanho M.");
                 } else {
-                    System.out.println("Estoque insuficiente para tamanho M.");
+                    quantidadeM -= quantidadeVendida;
+                    System.out.println("Venda concluída! Restam " + quantidadeM + " unidades do tamanho M de " + getDescricao() + ".");
                 }
                 break;
             case "G":
-                if (quantidadeG > 0) {
-                    quantidadeG--;
-                    System.out.println("Venda concluída! Restam " + quantidadeG + " unidades do tamanho G de " + getDescricao() + ".");
+                if (quantidadeVendida > quantidadeG) {
+                    System.out.println("Estoque insuficiente para o tamanho G.");
                 } else {
-                    System.out.println("Estoque insuficiente para tamanho G.");
+                    quantidadeG -= quantidadeVendida;
+                    System.out.println("Venda concluída! Restam " + quantidadeG + " unidades do tamanho G de " + getDescricao() + ".");
                 }
                 break;
             default:
                 System.out.println("Tamanho inválido!");
         }
     }
-
 
     @Override
     public void reposicaoEstoque() {

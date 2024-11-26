@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class RoupaTamanhoUnico extends Peca {
     public RoupaTamanhoUnico(String descricao, int quantidade, int estoqueMinimo, int estoqueMaximo) {
         super(descricao, quantidade, estoqueMinimo, estoqueMaximo);
@@ -5,11 +7,15 @@ public class RoupaTamanhoUnico extends Peca {
 
     @Override
     public void venda() {
-        if (getQuantidade() > 0) {
-            setQuantidade(getQuantidade() - 1);
-            exibirMensagemVenda();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Quantidade vendida de " + getDescricao() + ": ");
+        int quantidadeVendida = scanner.nextInt();
+
+        if (quantidadeVendida > getQuantidade()) {
+            System.out.println("Estoque insuficiente para atender a venda.");
         } else {
-            System.out.println("Estoque insuficiente para " + getDescricao() + ".");
+            setQuantidade(getQuantidade() - quantidadeVendida);
+            exibirMensagemVenda();
         }
     }
 }
